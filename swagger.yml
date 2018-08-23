@@ -1,0 +1,487 @@
+---
+swagger: '2.0'
+info:
+  description: Awesome API Description
+  version: '1.0'
+  title: Awesome API Title
+  termsOfService: urn:tos
+  contact:
+    name: Daniel Scharrer
+    email: scharrerda56199@th-nuernberg.de
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+host: localhost:8080
+basePath: "/"
+tags:
+- name: person-api-controller
+  description: Person Api Controller
+- name: basic-error-controller
+  description: Basic Error Controller
+consumes:
+- application/xml
+- application/json
+produces:
+- application/xml
+- application/json
+paths:
+  "/error":
+    get:
+      tags:
+      - basic-error-controller
+      summary: errorHtml
+      operationId: errorHtmlUsingGET
+      consumes:
+      - application/xml
+      - application/json
+      produces:
+      - application/xml
+      - text/html
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/ModelAndView"
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    head:
+      tags:
+      - basic-error-controller
+      summary: errorHtml
+      operationId: errorHtmlUsingHEAD
+      consumes:
+      - application/xml
+      - application/json
+      produces:
+      - application/xml
+      - text/html
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/ModelAndView"
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    post:
+      tags:
+      - basic-error-controller
+      summary: errorHtml
+      operationId: errorHtmlUsingPOST
+      consumes:
+      - application/xml
+      - application/json
+      produces:
+      - application/xml
+      - text/html
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/ModelAndView"
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    put:
+      tags:
+      - basic-error-controller
+      summary: errorHtml
+      operationId: errorHtmlUsingPUT
+      consumes:
+      - application/xml
+      - application/json
+      produces:
+      - application/xml
+      - text/html
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/ModelAndView"
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+      - basic-error-controller
+      summary: errorHtml
+      operationId: errorHtmlUsingDELETE
+      consumes:
+      - application/xml
+      - application/json
+      produces:
+      - application/xml
+      - text/html
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/ModelAndView"
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    options:
+      tags:
+      - basic-error-controller
+      summary: errorHtml
+      operationId: errorHtmlUsingOPTIONS
+      consumes:
+      - application/xml
+      - application/json
+      produces:
+      - application/xml
+      - text/html
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/ModelAndView"
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    patch:
+      tags:
+      - basic-error-controller
+      summary: errorHtml
+      operationId: errorHtmlUsingPATCH
+      consumes:
+      - application/xml
+      - application/json
+      produces:
+      - application/xml
+      - text/html
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/ModelAndView"
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  "/person/search/{name}":
+    get:
+      tags:
+      - person-api-controller
+      summary: Find  a person by their surname
+      description: Returns the requested Person based on their family name.
+      operationId: searchPersonUsingGET
+      consumes:
+      - application/xml
+      - application/json
+      produces:
+      - application/xml
+      - application/json
+      parameters:
+      - name: name
+        in: path
+        description: name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/Person"
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  "/person/{id}":
+    get:
+      tags:
+      - person-api-controller
+      summary: Find Person by id
+      description: Returns the requested Person by using a specific id.
+      operationId: getPersonUsingGET
+      consumes:
+      - application/xml
+      - application/json
+      produces:
+      - application/xml
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        type: integer
+        format: int64
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/Person"
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    put:
+      tags:
+      - person-api-controller
+      summary: Updates a specific Person
+      description: Update happens via id.
+      operationId: updatePersonUsingPUT
+      consumes:
+      - application/xml
+      - application/json
+      produces:
+      - application/xml
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        type: integer
+        format: int64
+      - in: body
+        name: p
+        description: p
+        required: true
+        schema:
+          "$ref": "#/definitions/Person"
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+      - person-api-controller
+      summary: Deletes a specific Person via id
+      description: Deletes the specified Person.
+      operationId: deletePersonUsingDELETE
+      consumes:
+      - application/xml
+      - application/json
+      produces:
+      - application/xml
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        type: integer
+        format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  "/persons":
+    get:
+      tags:
+      - person-api-controller
+      summary: List all Persons
+      description: Returns all Persons.
+      operationId: getPersonsUsingGET
+      consumes:
+      - application/xml
+      - application/json
+      produces:
+      - application/xml
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/Person"
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+      - person-api-controller
+      summary: Creates a new Person
+      description: Currently, the new Person gets the next higher Integer ID from
+        the Server.
+      operationId: createPersonUsingPOST
+      consumes:
+      - application/xml
+      - application/json
+      produces:
+      - application/xml
+      - application/json
+      parameters:
+      - in: body
+        name: p
+        description: p
+        required: true
+        schema:
+          "$ref": "#/definitions/Person"
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+definitions:
+  ModelAndView:
+    type: object
+    properties:
+      empty:
+        type: boolean
+      model:
+        type: object
+      modelMap:
+        type: object
+        additionalProperties:
+          type: object
+      reference:
+        type: boolean
+      status:
+        type: string
+        enum:
+        - '100'
+        - '101'
+        - '102'
+        - '103'
+        - '200'
+        - '201'
+        - '202'
+        - '203'
+        - '204'
+        - '205'
+        - '206'
+        - '207'
+        - '208'
+        - '226'
+        - '300'
+        - '301'
+        - '302'
+        - '302'
+        - '303'
+        - '304'
+        - '305'
+        - '307'
+        - '308'
+        - '400'
+        - '401'
+        - '402'
+        - '403'
+        - '404'
+        - '405'
+        - '406'
+        - '407'
+        - '408'
+        - '409'
+        - '410'
+        - '411'
+        - '412'
+        - '413'
+        - '413'
+        - '414'
+        - '414'
+        - '415'
+        - '416'
+        - '417'
+        - '418'
+        - '419'
+        - '420'
+        - '421'
+        - '422'
+        - '423'
+        - '424'
+        - '426'
+        - '428'
+        - '429'
+        - '431'
+        - '451'
+        - '500'
+        - '501'
+        - '502'
+        - '503'
+        - '504'
+        - '505'
+        - '506'
+        - '507'
+        - '508'
+        - '509'
+        - '510'
+        - '511'
+      view:
+        "$ref": "#/definitions/View"
+      viewName:
+        type: string
+  View:
+    type: object
+    properties:
+      contentType:
+        type: string
+  Person:
+    type: object
+    properties:
+      "@context":
+        type: string
+      "@type":
+        type: string
+      birthDate:
+        type: string
+      familyName:
+        type: string
+        description: The given name should have at least 2 characters
+      givenName:
+        type: string
+        description: The given name should have at least 2 characters
+      id:
+        type: integer
+        format: int64
+    description: 'All details about a Person. '
