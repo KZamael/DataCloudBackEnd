@@ -8,12 +8,17 @@ import javax.validation.constraints.Size;
 
 import org.springframework.lang.NonNull;
 import com.fasterxml.jackson.annotation.*;
+
+import de.DataCloud.DataObjects.ComplexSubObjects.Address;
+import de.DataCloud.DataObjects.ComplexSubObjects.Birthdate;
+import de.DataCloud.DataObjects.ComplexSubObjects.Name;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-@Entity
+//@Entity
 @ApiModel(description="All details about a Person. ")
 public class Person {
 	
@@ -31,34 +36,39 @@ public class Person {
 	@ApiModelProperty(notes="The given name should have at least 2 characters")
 	@Size(min=2, message="The given name should have at least 2 characters")
 	@JsonProperty("givenName")
-	private String givenName = null;
+	private Name givenName;
 
 	@ApiModelProperty(notes="The given name should have at least 2 characters")
 	@Size(min=2, message="The given name should have at least 2 characters")
 	@JsonProperty("familyName")
-	private String familyName = null;
+	private Name familyName;
+	
 	@JsonProperty("birthDate")
-	private String birthDate = null;
+	private Birthdate birthDate;
+	
+	@JsonProperty("address")
+	private Address address;
 
-	public Person(Long id, String givenName, String familyName, String birthDate) {
+	public Person(Long id, Name givenName, Name familyName, Birthdate birthDate, Address address) {
 		this.id = id;
 		this.givenName = givenName;
 		this.familyName = familyName;
 		this.birthDate = birthDate;
+		this.address = address;
 	}
 	
-	// 
-	public Person(Long id, String context, String type, String givenName, String familyName, String birthDate) {
+	public Person(Long id, String context, String type, Name givenName, Name familyName, Birthdate birthDate, Address address) {
 		this.id = id++;
 		this.context = context;
 		this.type = type;
 		this.givenName = givenName;
 		this.familyName = familyName;
 		this.birthDate = birthDate;
+		this.address = address;
 	}
 	
 	public Person(){}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -83,27 +93,27 @@ public class Person {
 		return type;
 	}
 	
-	public void setGivenName(String givenName) {
+	public void setGivenName(Name givenName) {
 		this.givenName = givenName;
 	}
 	
-	public String getGivenName() {
+	public Name getGivenName() {
 		return givenName;
 	}
 	
-	public void setFamilyName(String familyName) {
+	public void setFamilyName(Name familyName) {
 		this.familyName = familyName;
 	}
 	
-	public String getFamilyName() {
+	public Name getFamilyName() {
 		return familyName;
 	}
 	
-	public void setBirthDate(String birthDate) {
+	public void setBirthDate(Birthdate birthDate) {
 		this.birthDate = birthDate;
 	}
 	
-	public String getBirthDate() {
+	public Birthdate getBirthDate() {
 		return birthDate;
 	}
 	
