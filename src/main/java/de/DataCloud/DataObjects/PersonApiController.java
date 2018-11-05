@@ -1,12 +1,7 @@
 package de.DataCloud.DataObjects;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
-import org.omg.CORBA.TCKind;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,17 +15,17 @@ import de.DataCloud.DataObjects.ComplexSubObjects.*;
 public class PersonApiController implements PersonAPI {
 
 	private static TreeMap<Long, Person> data = initialHash();
-
+	
 	/* Holds some Dummy Persons for testing.*/
 	private static TreeMap<Long, Person> initialHash() {
 		TreeMap<Long, Person> data = new TreeMap<>();
 		
 		data.put(123L, new Person(new Long(123), 
-				new Name("FirstName","Bruce","text", new Validation(true)), 
-				new Name("LastName","Wayne","text", new Validation(true)), 
-				new Birthdate("Birthdate","1975-01-15","date"),
+				new Name("FirstName","Bruce","text", new Validation(true, 3, 32)), 
+				new Name("LastName","Wayne","text", new Validation(true, 3, 32)), 
+				new Birthdate("Birthdate","1975-01-15","birthDate", new Validation(true, 10, 10)),
 				new Address(
-						"Address",
+						new AddressElement("Address", "Address", "text"),
 						new AddressElement("addressLocality","Seattle","text"),
 						new AddressElement("addressRegion","WA","text"),
 						new AddressElement("postalCode","98052","text"),
@@ -38,30 +33,29 @@ public class PersonApiController implements PersonAPI {
 						"PostalAddress"
 						)));
 		data.put(231L, new Person(new Long(231), 
-				new Name("FirstName","Joseph","text", new Validation(true)), 
-				new Name("LastName","Joestar","text", new Validation(true)), 
-				new Birthdate("Birthdate","1920-09-17","date"),
+				new Name("FirstName","Joseph","text", new Validation(true, 3, 32)), 
+				new Name("LastName","Joestar","text", new Validation(true , 3, 32)), 
+				new Birthdate("Birthdate","1920-09-17","birthDate", new Validation(true, 10, 10)),
 				new Address(
-						"Address",
+						new AddressElement("Address", "Address", "text"),
 						new AddressElement("addressLocality","Seattle","text"),
 						new AddressElement("addressRegion","WA","text"),
 						new AddressElement("postalCode","98052","text"),
-						new AddressElement("streetAddress","90561 Hartenweg 7, Oberasbach","text"),
+						new AddressElement("streetAddress","90561 Hartenweg 7, Sonarsbach","text"),
 						"PostalAddress"
 						)));
 		data.put(331L, new Person(new Long(331), 
-				new Name("FirstName","Doctor","text", new Validation(true)), 
-				new Name("LastName","Gallifrey","text", new Validation(true)), 
-				new Birthdate("Birthdate","2012-01-01","date"),
+				new Name("FirstName","Doctor","text", new Validation(true, 3, 32)), 
+				new Name("LastName","Gallifrey","text", new Validation(true, 3, 32)), 
+				new Birthdate("Birthdate","2012-01-01","birthDate", new Validation(true, 10, 10)),
 				new Address(
-						"Address",
+						new AddressElement("Address", "Address", "text"),
 						new AddressElement("addressLocality","Seattle","text"),
 						new AddressElement("addressRegion","WA","text"),
 						new AddressElement("postalCode","98052","text"),
 						new AddressElement("streetAddress","20341 Whitworth Institute 405 N. Whitworth","text"),
 						"PostalAddress"
 						)));
-
 		
 		return data;
 	}

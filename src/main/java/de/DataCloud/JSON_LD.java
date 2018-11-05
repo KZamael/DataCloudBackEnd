@@ -18,7 +18,7 @@ public class JSON_LD {
 	
 	public JSON_LD(){
 		try {
-			url = new URL("http://localhost:8080/persons");
+			url = new URL("http://schema.org/Person");
 			
 			String pattern = "id: \\d*";
 			String replacement = ":\"$1\"";
@@ -39,7 +39,6 @@ public class JSON_LD {
 			
 			// Call whichever JSONLD function u want! (e.g compact)
 			Object compact = JsonLdProcessor.compact(jsonObjectQuoted, context, options);
-			
 			
 			// Print out the result ( or do not )
 			System.out.println(JsonUtils.toPrettyString(compact));

@@ -14,7 +14,25 @@ public class Validation {
 	@JsonProperty("required")
 	private boolean required;
 	
-	public Validation(boolean required) {
+	@JsonProperty("minlength")
+	private int min;
+	
+	@JsonProperty("maxlength")
+	private int max;
+	
+	public Validation(boolean required, int min, int max) {
 		this.required = required;
+		this.min = min;
+		this.max = max;
 	}
+	
+	public Validation(boolean required, int min) {
+		this(required, min, 2);
+	}
+	
+	public Validation(boolean required) {
+		this(required, 2, 2);
+	}
+	
+	
 }

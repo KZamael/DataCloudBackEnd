@@ -6,7 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
-import org.springframework.lang.NonNull;
 import com.fasterxml.jackson.annotation.*;
 
 import de.DataCloud.DataObjects.ComplexSubObjects.Address;

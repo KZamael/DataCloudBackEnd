@@ -15,10 +15,12 @@ public class Product {
 	private Long id;
 	
 	@JsonProperty("@context")
+	@Column(nullable = false)
 	private String context;
-	
+
 	@JsonProperty("@type")
-	private String type;
+	@Column(nullable = false)
+	private String data_type;
 	
 	@Column(nullable = false, unique = true)
 	private String code;
